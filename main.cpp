@@ -6,7 +6,7 @@
 using std:: cout;
 using std:: cin;
 using std:: vector;
-
+a
 void aleatorio(int &); // Função para definir os números aleatoriamente
 bool trocar (int &, int &); // Função para trocar inteiros
 bool trocar (double &, double &); // Função para trocar double
