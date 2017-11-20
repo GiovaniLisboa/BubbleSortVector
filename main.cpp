@@ -6,15 +6,37 @@
 using std:: cout;
 using std:: cin;
 using std:: vector;
-a
+
 void aleatorio(int &); // Função para definir os números aleatoriamente
 bool trocar (int &, int &); // Função para trocar inteiros
 bool trocar (double &, double &); // Função para trocar double
+void bubblesort (vector <int> &);
 
 int main(int argc, char **argv)
 {
     srand (time(NULL)); //Redefine os números aleatórios a cada execução
     
+    vector <int> meuvetor;
+    bubblesort (meuvetor);
+    
+    cout << "\n";
+    
+    while (!meuvetor.empty())
+    {
+        meuvetor.pop_back();
+        for (int i = 0; i < meuvetor.size(); i++)
+        {
+            cout << "A[" << i+1 << "]: " << meuvetor[i] << "\n";
+        }
+        cout << "\n";
+    }
+    
+    cout << "\n";
+    return 0;
+}
+
+void bubblesort (vector <int> &vetor)
+{
     int tamanho = 0; //Tamanho do vetor
     int cont = 0; //Contador de trocas
     bool teste; //Teste para minimizar o número de iterações
@@ -26,12 +48,12 @@ int main(int argc, char **argv)
         cout << "\n";
     }
     
-    vector<int> bubblesort (tamanho); //Vetor
+    vetor.resize (tamanho);
     
-    for (int i = 0; i < bubblesort.size(); i++) //Loop de repetição para definir os valores das células
+    for (int i = 0; i < vetor.size(); i++) //Loop de repetição para definir os valores das células
     {
-        aleatorio (bubblesort[i]);
-        cout << "A[" << i+1 << "]: " << bubblesort[i] << "\n";
+        aleatorio (vetor[i]);
+        cout << "A[" << i+1 << "]: " << vetor[i] << "\n";
     }
 
     cout << "\n";
@@ -39,9 +61,9 @@ int main(int argc, char **argv)
     while (teste == false) //Loop de teste para verificar se o vetor está em ordem (Só precisa executar no mínimo uma vez)
     {
         teste = true;
-        for (int i = 0; i < bubblesort.size() - 1; i++) //Repetição para trocar os valores
+        for (int i = 0; i < vetor.size() - 1; i++) //Repetição para trocar os valores
         {
-            if (trocar(bubblesort[i], bubblesort[i+1]))
+            if (trocar(vetor[i], vetor[i+1]))
             {
                 cont++;
                 teste = false;
@@ -51,16 +73,11 @@ int main(int argc, char **argv)
         
     cout << "Trocas: " << cont << "\n"; //Informa o número de trocas
     cout << "\n";
-    for (int i = 0; i < bubblesort.size(); i++) //Escreve o vetor
+    for (int i = 0; i < vetor.size(); i++) //Escreve o vetor
     {
-        cout << "A[" << i+1 << "]: " << bubblesort[i] << "\n";
+        cout << "A[" << i+1 << "]: " << vetor[i] << "\n";
     }
-    
-    cout << "\n";
-    return 0;
 }
-
-//FUNÇÕES
 
 void aleatorio (int &x)
 {
