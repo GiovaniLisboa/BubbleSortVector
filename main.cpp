@@ -12,20 +12,57 @@ bool trocar (int &, int &); // Função para trocar inteiros
 bool trocar (double &, double &); // Função para trocar double
 void bubblesort (vector <int> &);
 
+bool teste;
+int cont;
+char resposta;
+
 int main(int argc, char **argv)
 {
     srand (time(NULL)); //Redefine os números aleatórios a cada execução
     
-    vector <int> meuvetor;
-    bubblesort (meuvetor);
+    vector <int> meuvetor (0);
+    
+    teste = true;
+    while (teste == true)
+    {
+        meuvetor.push_back(rand() % 20);
+        cout << "A[" << meuvetor.size() << "]: " << meuvetor.back() << "\n \n";
+        
+        resposta = 'a';
+        while (resposta != 's' && resposta != 'n')
+        {
+            cout << "Deseja entrar com um novo valor? (s/n)\n";
+            cin >> resposta;
+            cout << "\n";
+        }
+        
+        if (resposta == 's')
+            teste = true;
+            else teste = false;
+    }
     
     cout << "\n";
+    
+    bubblesort (meuvetor);
+    
+    cout << "\n\n";
+    
+    int vetor_array[meuvetor.size()];
+    
+    for (int i = 0; i < meuvetor.size(); i++)
+        {
+            vetor_array[i+1] = meuvetor[meuvetor.size() - 1 - i];
+            cout << "B[" << i+1 << "]: " << vetor_array[i+1] << "\n";
+        }
+    
+    cout << "\nApagando o vector com o pop_back\n";
     
     while (!meuvetor.empty())
     {
         meuvetor.pop_back();
         for (int i = 0; i < meuvetor.size(); i++)
         {
+            
             cout << "A[" << i+1 << "]: " << meuvetor[i] << "\n";
         }
         cout << "\n";
@@ -37,22 +74,8 @@ int main(int argc, char **argv)
 
 void bubblesort (vector <int> &vetor)
 {
-    int tamanho = 0; //Tamanho do vetor
-    int cont = 0; //Contador de trocas
-    bool teste; //Teste para minimizar o número de iterações
-    
-    while (tamanho < 2 || tamanho > 20) //Entrada do tamanho do vetor pelo usuário
-    {
-        cout << "Insira o tamanho do vetor (min: 2 // max: 20): ";
-        cin >> tamanho;
-        cout << "\n";
-    }
-    
-    vetor.resize (tamanho);
-    
     for (int i = 0; i < vetor.size(); i++) //Loop de repetição para definir os valores das células
     {
-        aleatorio (vetor[i]);
         cout << "A[" << i+1 << "]: " << vetor[i] << "\n";
     }
 
@@ -77,11 +100,6 @@ void bubblesort (vector <int> &vetor)
     {
         cout << "A[" << i+1 << "]: " << vetor[i] << "\n";
     }
-}
-
-void aleatorio (int &x)
-{
-    x = (rand() % 20);
 }
 
 bool trocar (int &x, int &y)
